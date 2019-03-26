@@ -1,0 +1,83 @@
+package entities;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.*;
+
+@Table(name = "Seguimiento")
+@Entity
+public class Seguimiento implements Serializable{
+	
+	public Seguimiento() {
+		
+	}
+
+	public Seguimiento(long idSeguimiento, Date fechaSeguimiento, long idUsuario, long idUsuarioSeguidor,
+			long idUsuarioSeguido) {
+		super();
+		this.idSeguimiento = idSeguimiento;
+		this.fechaSeguimiento = fechaSeguimiento;
+		this.idUsuario = idUsuario;
+		this.idUsuarioSeguidor = idUsuarioSeguidor;
+		this.idUsuarioSeguido = idUsuarioSeguido;
+	}
+
+	@GeneratedValue
+	@Id
+	@Column(name = "Id_Seguimiento")
+	private long idSeguimiento;
+
+	@Column(name = "Fecha_Seguimiento")
+	private Date fechaSeguimiento;
+	
+	@Column(name = "Id_Usuario",  nullable = false)
+	private long idUsuario;
+	
+	@Column (name = "Id_UsuarioSeguidor",  nullable = false)
+	private long idUsuarioSeguidor;
+	
+	@Column (name = "Id_UsuarioSeguido",  nullable = false)
+	private long idUsuarioSeguido;
+
+	public long getIdSeguimiento() {
+		return idSeguimiento;
+	}
+
+	public void setIdSeguimiento(long idSeguimiento) {
+		this.idSeguimiento = idSeguimiento;
+	}
+
+	public Date getFechaSeguimiento() {
+		return fechaSeguimiento;
+	}
+
+	public void setFechaSeguimiento(Date fechaSeguimiento) {
+		this.fechaSeguimiento = fechaSeguimiento;
+	}
+
+	public long getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public long getIdUsuarioSeguidor() {
+		return idUsuarioSeguidor;
+	}
+
+	public void setIdUsuarioSeguidor(long idUsuarioSeguidor) {
+		this.idUsuarioSeguidor = idUsuarioSeguidor;
+	}
+
+	public long getIdUsuarioSeguido() {
+		return idUsuarioSeguido;
+	}
+
+	public void setIdUsuarioSeguido(long idUsuarioSeguido) {
+		this.idUsuarioSeguido = idUsuarioSeguido;
+	}
+	
+}

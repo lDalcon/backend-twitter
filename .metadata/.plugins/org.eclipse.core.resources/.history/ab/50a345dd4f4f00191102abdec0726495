@@ -1,0 +1,14 @@
+package services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import repositories.PublicacionRepository;
+
+@RestController
+public class PublicacionService {
+	
+	@Autowired
+	private PublicacionRepository publicacionRepositoryDAO;
+
+}

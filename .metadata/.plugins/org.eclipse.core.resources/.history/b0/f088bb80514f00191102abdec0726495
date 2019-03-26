@@ -1,0 +1,25 @@
+package services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import entities.Publicacion;
+import repositories.PublicacionRepository;
+
+@RestController
+public class PublicacionService {
+	
+	@Autowired
+	private PublicacionRepository publicacionRepositoryDAO;
+	
+	@RequestMapping(path = "getAllPublicaciones", method = RequestMethod.GET)
+	public Iterable<Publicacion> getAllPublicaciones(){
+		
+		Iterable<Publicacion> findAll = publicacionRepositoryDAO.findAll();
+		return findAll;
+		
+	}
+
+}

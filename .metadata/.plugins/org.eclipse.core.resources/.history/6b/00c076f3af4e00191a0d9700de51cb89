@@ -1,0 +1,37 @@
+package entities;
+
+import java.util.Date;
+
+import javax.persistence.*;
+
+@Table(name = "Publicacion")
+@Entity
+public class Publicacion {
+
+	public Publicacion(long idPublicacion, long idUsuario, Date fechaPublucacion, String contenidoPublicacion,
+			long idPublicacionRT) {
+		this.idPublicacion = idPublicacion;
+		this.idUsuario = idUsuario;
+		this.fechaPublucacion = fechaPublucacion;
+		this.contenidoPublicacion = contenidoPublicacion;
+		this.idPublicacionRT = idPublicacionRT;
+	}
+
+	@GeneratedValue
+	@Id
+	@Column(name = "Id_Publicacion")
+	private long idPublicacion;
+
+	@Column(name = "Id_Usuario")
+	private long idUsuario;
+
+	@Column(name = "Fecha_Publicacion")
+	private Date fechaPublucacion;
+
+	@Column(name = "Contenido_Publicaccion")
+	private String contenidoPublicacion;
+
+	@Column(name = "Id_Publicacion_RT")
+	private long idPublicacionRT;
+
+}

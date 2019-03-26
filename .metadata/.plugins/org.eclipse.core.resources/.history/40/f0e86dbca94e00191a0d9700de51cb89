@@ -1,0 +1,9 @@
+package entities;
+
+import javax.persistence.*;
+
+@Table(name = "Seguimiento")
+@Entity
+public class Seguimiento {
+
+}

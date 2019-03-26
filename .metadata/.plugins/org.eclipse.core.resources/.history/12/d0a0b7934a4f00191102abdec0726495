@@ -1,0 +1,24 @@
+package services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import entities.Usuario;
+import repositories.UsuarioRepository;
+
+@RestController
+public class UsuarioService {
+
+	@Autowired
+	private UsuarioRepository usuarioRepositoryDAO;
+	
+	@RequestMapping(path = "/getAllUsers", method = RequestMethod.GET)
+	public Iterable<Usuario> getAllUsers (){
+		
+		Iterable<Usuario> findAll = usuarioRepositoryDAO.findAll();
+		return "a";
+		
+	}
+}

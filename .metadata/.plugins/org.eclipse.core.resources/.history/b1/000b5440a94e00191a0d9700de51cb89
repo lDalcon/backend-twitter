@@ -1,0 +1,23 @@
+package entities;
+
+import java.util.Date;
+
+import javax.persistence.*;
+
+@Table(name = "Publicacion")
+@Entity
+public class Publicacion {
+	
+	@GeneratedValue
+	@Id
+	@Column(name = "Id_Publicacion")
+	private long idPublicacion;
+	
+	@Column(name = "Id_Usuario")
+	private long idUsuario;
+	
+	@Column(name = "Fecha_Publicacion")
+	private Date fechaPublucacion;
+	
+
+}

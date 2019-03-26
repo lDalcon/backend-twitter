@@ -1,0 +1,29 @@
+package repositories;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import entities.Usuario;
+
+@Repository
+public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
+	
+	public Usuario findById(int id);
+	
+	public Usuario findByEmail(String email);
+	
+	public List<Usuario> findByFirstName(String firstname);
+	
+	public List<Usuario> findByLastName(String lastname);
+	
+	public List<Usuario> findByGender(String gender);
+	
+	public List<Usuario> findByBirthdate(Date birthdate);
+	
+	public Usuario findByHandle(String handle);
+	
+	
+}

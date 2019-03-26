@@ -1,0 +1,29 @@
+package entities;
+
+import java.util.Date;
+
+import javax.persistence.*;
+
+@Table (name = "Likes")
+@Entity
+public class Likes {
+	
+	@GeneratedValue
+	@Id
+	@Column (name = "Id_Like")
+	private long idLike;
+	
+	@Column (name = "Fecha_Like")
+	private Date fechaLike;
+	
+	@Column(name = "Id_Publicacion_Like")
+	private long idPublicacionLike;
+	
+	
+	
+	
+	
+	
+	
+
+}

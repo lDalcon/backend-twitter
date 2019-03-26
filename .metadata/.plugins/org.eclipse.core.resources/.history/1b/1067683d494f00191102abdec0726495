@@ -1,0 +1,83 @@
+package model;
+
+import java.util.Date;
+
+import entities.Seguimiento;
+
+public class SeguimientoM {
+
+	public SeguimientoM() {
+
+	}
+
+	public SeguimientoM(Seguimiento seguimiento) {
+
+		this.idSeguimiento = seguimiento.getIdSeguimiento();
+		this.fechaSeguimiento = seguimiento.getFechaSeguimiento();
+		this.idUsuario = seguimiento.getIdUsuario();
+		this.idUsuarioSeguidor = seguimiento.getIdUsuarioSeguidor();
+		this.idUsuarioSeguido = seguimiento.getIdUsuarioSeguido();
+
+	}
+
+	public SeguimientoM(long idSeguimiento, Date fechaSeguimiento, long idUsuario, long idUsuarioSeguidor,
+			long idUsuarioSeguido) {
+		super();
+		this.idSeguimiento = idSeguimiento;
+		this.fechaSeguimiento = fechaSeguimiento;
+		this.idUsuario = idUsuario;
+		this.idUsuarioSeguidor = idUsuarioSeguidor;
+		this.idUsuarioSeguido = idUsuarioSeguido;
+	}
+
+	private long idSeguimiento;
+
+	private Date fechaSeguimiento;
+
+	private long idUsuario;
+
+	private long idUsuarioSeguidor;
+
+	private long idUsuarioSeguido;
+
+	public long getIdSeguimiento() {
+		return idSeguimiento;
+	}
+
+	public void setIdSeguimiento(long idSeguimiento) {
+		this.idSeguimiento = idSeguimiento;
+	}
+
+	public Date getFechaSeguimiento() {
+		return fechaSeguimiento;
+	}
+
+	public void setFechaSeguimiento(Date fechaSeguimiento) {
+		this.fechaSeguimiento = fechaSeguimiento;
+	}
+
+	public long getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public long getIdUsuarioSeguidor() {
+		return idUsuarioSeguidor;
+	}
+
+	public void setIdUsuarioSeguidor(long idUsuarioSeguidor) {
+		this.idUsuarioSeguidor = idUsuarioSeguidor;
+	}
+
+	public long getIdUsuarioSeguido() {
+		return idUsuarioSeguido;
+	}
+
+	public void setIdUsuarioSeguido(long idUsuarioSeguido) {
+		this.idUsuarioSeguido = idUsuarioSeguido;
+	}
+
+}

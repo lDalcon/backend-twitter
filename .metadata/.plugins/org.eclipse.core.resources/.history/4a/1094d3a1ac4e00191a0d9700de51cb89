@@ -1,0 +1,30 @@
+package entities;
+
+import javax.persistence.*;
+
+@Table(name = "Usuario")
+@Entity
+public class Usuario {
+
+	@GeneratedValue
+	@Id
+	@Column(name = "Id_Usuario")
+	private long idUsuario;
+	
+	@Column(name = "Nombre_Usuario")
+	private String nombreUsuario;
+	
+	@Column (name = "Apellido_Ususario")
+	private String apellidoUsuario;
+	
+	@Column(name = "Clave_Usuario")
+	private String claveUsuario;
+	
+	@Column(name = "Correo_Usuario")
+	private String correoUsuario;
+	
+	@Column(name ="Celular_Usuario")
+	private long celularUsuario;
+	
+
+}

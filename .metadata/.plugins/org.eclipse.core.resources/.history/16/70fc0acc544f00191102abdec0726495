@@ -1,0 +1,84 @@
+package entities;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.*;
+
+@Table(name = "Chat")
+@Entity
+public class Chat implements Serializable{
+
+	
+	@GeneratedValue
+	@Id
+	@Column(name = "Id_Chat")
+	private long idChat;
+
+	@Column(name = "Fecha_Chat")
+	private Date fechaChat;
+
+	@Column(name = "Texto_Chat")
+	private String textoChat;
+
+	@Column(name = "Id_UsuarioEnviaChat")
+	private long idUsuarioEnviaChat;
+
+	@Column(name = "Id_UsuarioRecibeChat")
+	private long idUsuarioRecibeChat;
+
+	public Chat() {
+
+	}
+
+	public Chat(long idChat, Date fechaChat, String textoChat, long idUsuarioEnviaChat, long idUsuarioRecibeChat) {
+		this.idChat = idChat;
+		this.fechaChat = fechaChat;
+		this.textoChat = textoChat;
+		this.idUsuarioEnviaChat = idUsuarioEnviaChat;
+		this.idUsuarioRecibeChat = idUsuarioRecibeChat;
+	}
+
+	
+
+	public long getIdChat() {
+		return idChat;
+	}
+
+	public void setIdChat(long idChat) {
+		this.idChat = idChat;
+	}
+
+	public Date getFechaChat() {
+		return fechaChat;
+	}
+
+	public void setFechaChat(Date fechaChat) {
+		this.fechaChat = fechaChat;
+	}
+
+	public String getTextoChat() {
+		return textoChat;
+	}
+
+	public void setTextoChat(String textoChat) {
+		this.textoChat = textoChat;
+	}
+
+	public long getIdUsuarioEnviaChat() {
+		return idUsuarioEnviaChat;
+	}
+
+	public void setIdUsuarioEnviaChat(long idUsuarioEnviaChat) {
+		this.idUsuarioEnviaChat = idUsuarioEnviaChat;
+	}
+
+	public long getIdUsuarioRecibeChat() {
+		return idUsuarioRecibeChat;
+	}
+
+	public void setIdUsuarioRecibeChat(long idUsuarioRecibeChat) {
+		this.idUsuarioRecibeChat = idUsuarioRecibeChat;
+	}
+
+}

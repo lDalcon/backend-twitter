@@ -1,0 +1,82 @@
+package model;
+
+import java.util.Date;
+
+import entities.Chat;
+
+
+public class ChatM {
+
+	public ChatM() {
+
+	}
+	
+	public ChatM( Chat chat) {
+		this.idChat = chat.getIdChat();
+		this.fechaChat = chat.getFechaChat();
+		this.textoChat = chat.getTextoChat();
+		this.idUsuarioEnviaChat = chat.getIdUsuarioEnviaChat();
+		this.idUsuarioRecibeChat = chat.getIdUsuarioRecibeChat();
+	}
+
+	public ChatM(long idChat, Date fechaChat, String textoChat, long idUsuarioEnviaChat, long idUsuarioRecibeChat) {
+		this.idChat = idChat;
+		this.fechaChat = fechaChat;
+		this.textoChat = textoChat;
+		this.idUsuarioEnviaChat = idUsuarioEnviaChat;
+		this.idUsuarioRecibeChat = idUsuarioRecibeChat;
+	}
+
+	private long idChat;
+
+
+	private Date fechaChat;
+
+	private String textoChat;
+
+	private long idUsuarioEnviaChat;
+
+	private long idUsuarioRecibeChat;
+
+	public long getIdChat() {
+		return idChat;
+	}
+
+	public void setIdChat(long idChat) {
+		this.idChat = idChat;
+	}
+
+	public Date getFechaChat() {
+		return fechaChat;
+	}
+
+	public void setFechaChat(Date fechaChat) {
+		this.fechaChat = fechaChat;
+	}
+
+	public String getTextoChat() {
+		return textoChat;
+	}
+
+	public void setTextoChat(String textoChat) {
+		this.textoChat = textoChat;
+	}
+
+	public long getIdUsuarioEnviaChat() {
+		return idUsuarioEnviaChat;
+	}
+
+	public void setIdUsuarioEnviaChat(long idUsuarioEnviaChat) {
+		this.idUsuarioEnviaChat = idUsuarioEnviaChat;
+	}
+
+	public long getIdUsuarioRecibeChat() {
+		return idUsuarioRecibeChat;
+	}
+
+	public void setIdUsuarioRecibeChat(long idUsuarioRecibeChat) {
+		this.idUsuarioRecibeChat = idUsuarioRecibeChat;
+	}
+
+}
+

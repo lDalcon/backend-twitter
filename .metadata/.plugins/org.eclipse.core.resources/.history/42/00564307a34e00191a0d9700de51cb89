@@ -1,0 +1,100 @@
+package servicios;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import entities.Usuario;
+import repositories.UsuarioRepository;
+import entities.Follow;
+import repositories.FollowRepository;
+
+@RestController
+public class FollowController {
+	
+	@Autowired
+	private FollowRepository followRepositoryDAO;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepositoryDAO;
+	
+	@RequestMapping(path="/getAllFollows", method=RequestMethod.GET)
+	public Iterable<Follow> getAllFollows () {
+		
+		Iterable<Follow> findAll = followRepositoryDAO.findAll();
+		return findAll;
+		
+	}
+	
+	@RequestMapping(path="/follow", method=RequestMethod.POST) 
+	public @ResponseBody String follow
+	(@RequestParam String id_usuario, @RequestParam String id_seguidor)  {
+		
+		int idusuario = Integer.parseInt(id_usuario);
+		int idseguidor = Integer.parseInt(id_seguidor);
+		
+		Usuario usuario = usuarioRepositoryDAO.findById(idusuario);
+		Usuario seguidor = usuarioRepositoryDAO.findById(idseguidor);
+		
+		Follow follow = new Follow();
+		follow.setUsuario(usuario);
+		follow.setSeguidor(seguidor);
+		
+		followRepositoryDAO.save(follow);
+		
+		return "Following";
+		
+	}
+
+	
+	@RequestMapping(path="/unfollow", method=RequestMethod.POST) 
+	public @ResponseBody String unfollow
+	(@RequestParam String id_usuario, @RequestParam String id_seguidor) {
+		
+		int idusuario = Integer.parseInt(id_usuario);
+		int idseguidor = Integer.parseInt(id_seguidor);
+		
+		Usuario usuario = usuarioRepositoryDAO.findById(idusuario);
+		Usuario seguidor = usuarioRepositoryDAO.findById(idseguidor);
+		
+		Follow unfollow = followRepositoryDAO.findByUsuarioAndSeguidor(usuario, seguidor);
+		followRepositoryDAO.delete(unfollow);
+		
+		return "Unfollowed";
+		
+	}
+	
+	@RequestMapping(path="/getFollowers", method=RequestMethod.GET)
+	public Iterable<Follow> getFollowers (String id_usuario) {
+		
+		int idusuario = Integer.parseInt(id_usuario);
+		
+		Usuario usuario = usuarioRepositoryDAO.findById(idusuario);
+		Iterable<Follow> followers = followRepositoryDAO.findByUsuario(usuario);
+		return followers;
+		
+	}
+	
+	@RequestMapping(path="/getFollowing", method=RequestMethod.GET)
+	public Iterable<Follow> getFollowing (String id_seguidor) {
+		
+		int idseguidor = Integer.parseInt(id_seguidor);
+		
+		Usuario usuario = usuarioRepositoryDAO.findById(idseguidor);
+		Iterable<Follow> siguiendo = followRepositoryDAO.findBySeguidor(usuario);
+		return siguiendo;
+		
+	}
+	
+	
+}

@@ -1,0 +1,17 @@
+package entities;
+
+import javax.persistence.*;
+
+@Table(name = "CHAT")
+@Entity
+public class Chat {
+	
+	@GeneratedValue
+	@Id
+	@Column(name = "ID_CHAT")
+	private long id;
+	
+	
+	
+
+}

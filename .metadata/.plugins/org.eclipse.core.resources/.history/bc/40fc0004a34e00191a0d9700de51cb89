@@ -1,0 +1,27 @@
+package repositories;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import entities.Mensajes;
+import entities.Usuario;
+
+
+@Repository
+public interface MensajesRepository extends CrudRepository<Mensajes, Long> {
+	
+	public Mensajes findById(int id);
+	
+	public List<Mensajes> findByEnvia(Usuario envia);
+	
+	public List<Mensajes> findByRecibe(Usuario recibe);
+	
+	public List<Mensajes> findByTexto(String texto);
+	
+	public List<Mensajes> findByFecha(Date fecha);
+	
+	
+}

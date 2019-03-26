@@ -1,0 +1,113 @@
+package servicios;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import entities.Usuario;
+import repositories.UsuarioRepository;
+import entities.Mensajes;
+import repositories.MensajesRepository;
+
+@RestController
+public class MensajesController {
+	
+	@Autowired
+	private MensajesRepository mensajesRepositoryDAO;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepositoryDAO;
+	
+	@RequestMapping(path="/getAllMensajes", method=RequestMethod.GET)
+	public Iterable<Mensajes> getAllMensajes () {
+		
+		Iterable<Mensajes> findAll = mensajesRepositoryDAO.findAll();
+		return findAll;
+		
+	}
+	
+	@RequestMapping(path="/addMensaje", method=RequestMethod.POST) 
+	public @ResponseBody String addMensaje
+	(@RequestParam String id_envia, @RequestParam String id_recibe, 
+	@RequestParam String texto)  {
+		
+		Date hoy =  Calendar.getInstance().getTime();
+		
+		int idenvia = Integer.parseInt(id_envia);
+		int idrecibe = Integer.parseInt(id_recibe);
+		
+		Usuario envia = usuarioRepositoryDAO.findById(idenvia);
+		Usuario recibe = usuarioRepositoryDAO.findById(idrecibe);
+		
+		Mensajes mensaje = new Mensajes();
+		mensaje.setFecha(hoy);
+		mensaje.setTexto(texto);
+		mensaje.setUsuarioEnvia(envia);
+		mensaje.setUsuarioRecibe(recibe);
+		
+		mensajesRepositoryDAO.save(mensaje);
+		
+		return "Mensaje Enviado";
+		
+	}
+	
+
+	
+	@RequestMapping(path="/deleteMensaje", method=RequestMethod.POST) 
+	public @ResponseBody String deleteMensaje
+	(@RequestParam String id) {
+		
+		int idmensaje = Integer.parseInt(id);
+		
+		Mensajes mensaje = mensajesRepositoryDAO.findById(idmensaje);
+		mensajesRepositoryDAO.delete(mensaje);
+		return "Mensaje Eliminado";
+		
+	}
+	
+	@RequestMapping (path="/getMensajeByEnvia", method=RequestMethod.GET)
+	public Iterable<Mensajes> getMensajeByEnvia (@RequestParam String id_envia) {
+		
+		int idenvia = Integer.parseInt(id_envia);
+		
+		Usuario envia = usuarioRepositoryDAO.findById(idenvia);
+		
+		return mensajesRepositoryDAO.findByEnvia(envia);
+	}
+	
+	@RequestMapping (path="/getMensajeByRecibe", method=RequestMethod.GET)
+	public Iterable<Mensajes> getMensajeByRecibe (@RequestParam String id_recibe) {
+		
+		int idrecibe = Integer.parseInt(id_recibe);
+		Usuario recibe = usuarioRepositoryDAO.findById(idrecibe);
+		
+		return mensajesRepositoryDAO.findByEnvia(recibe);
+	}
+	
+	@RequestMapping (path="/getMensajeByTexto", method=RequestMethod.GET)
+	public Iterable<Mensajes> getMensajeByTexto (@RequestParam String texto) {
+
+		return mensajesRepositoryDAO.findByTexto(texto);
+	
+	}
+	
+	@RequestMapping (path="/getMensajesByFecha", method=RequestMethod.GET)
+	public Iterable<Mensajes> getMensajesByFecha (@RequestParam String date) throws ParseException {
+		
+		Date fecha = new SimpleDateFormat("dd/MM/yyyy").parse(date); 
+	
+		return mensajesRepositoryDAO.findByFecha(fecha);
+	
+	}
+	
+}

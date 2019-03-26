@@ -1,0 +1,16 @@
+package entities;
+
+import javax.persistence.*;
+
+@Table (name = "Likes")
+@Entity
+public class Likes {
+	
+	@GeneratedValue
+	@Id
+	@Column (name = "Id_Like")
+	private long idLike;
+	
+	
+
+}

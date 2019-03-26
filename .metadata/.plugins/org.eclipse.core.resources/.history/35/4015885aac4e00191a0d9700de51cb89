@@ -1,0 +1,15 @@
+package entities;
+
+import javax.persistence.*;
+
+
+@Table(name = "Usuario")
+@Entity
+public class Usuario {
+
+	@GeneratedValue
+	@Id
+	@Column(name="Id_Usuario")
+	private long idUsuario;
+	
+}

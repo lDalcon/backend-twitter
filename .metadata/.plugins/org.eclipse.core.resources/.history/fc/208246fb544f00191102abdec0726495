@@ -1,0 +1,37 @@
+package services;
+
+import java.text.ParseException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import entities.Publicacion;
+import repositories.PublicacionRepository;
+
+@RestController
+public class PublicacionService {
+
+	@Autowired
+	private PublicacionRepository publicacionRepositoryDAO;
+
+	@RequestMapping(path = "getAllPublicaciones", method = RequestMethod.GET)
+	public Iterable<Publicacion> getAllPublicaciones() {
+
+		Iterable<Publicacion> findAll = publicacionRepositoryDAO.findAll();
+		return findAll;
+
+	}
+
+	@RequestMapping(path = "addPublicacion", method = RequestMethod.POST)
+	public @ResponseBody String addPublicacion(@RequestParam long idUsuario, @RequestParam String contenidoPublicacion)
+			throws ParseException {
+		
+		
+		return "Publicacion realizada";
+	}
+
+}

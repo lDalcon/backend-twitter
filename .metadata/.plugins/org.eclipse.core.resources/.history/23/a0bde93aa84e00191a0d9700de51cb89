@@ -1,0 +1,11 @@
+package entities;
+
+import javax.persistence.*;
+
+@Table (name = "Likes")
+@Entity
+public class Likes {
+	
+	
+
+}

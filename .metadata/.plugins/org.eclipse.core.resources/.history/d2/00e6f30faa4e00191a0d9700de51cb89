@@ -1,0 +1,26 @@
+package entities;
+
+import java.util.Date;
+
+import javax.persistence.*;
+
+@Table(name = "Seguimiento")
+@Entity
+public class Seguimiento {
+
+	@GeneratedValue
+	@Id
+	@Column(name = "Id_Seguimiento")
+	private long idSeguimiento;
+
+	@Column(name = "Fecha_Seguimiento")
+	private Date fechaSeguimiento;
+	
+	@Column(name = "Id_Usuario")
+	private long idUsuario;
+	
+	@Column (name = "Id_UsuarioSeguidor")
+	private long idUsuarioSeguidor;
+	
+	
+}

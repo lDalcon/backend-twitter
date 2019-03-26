@@ -1,0 +1,17 @@
+package repositories;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import entities.Publicacion;
+
+@Repository("Repositorio")
+public interface PublicacionRepository extends JpaRepository<Publicacion, Serializable>{
+	
+	public abstract List<Publicacion> findByIdUsuario(long idUsuario);
+	
+	
+}

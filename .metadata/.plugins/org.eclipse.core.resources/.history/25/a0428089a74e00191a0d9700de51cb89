@@ -1,0 +1,21 @@
+package entities;
+
+import java.util.Date;
+
+import javax.persistence.*;
+
+@Table(name = "Chat")
+@Entity
+public class Chat {
+	
+	@GeneratedValue
+	@Id
+	@Column(name = "Id_Chat")
+	private long id;
+	
+	@Column(name = "Fecha_Chat")
+	private Date fechaChat;
+	
+	
+
+}

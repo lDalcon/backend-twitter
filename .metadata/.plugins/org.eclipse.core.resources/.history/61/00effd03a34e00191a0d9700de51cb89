@@ -1,0 +1,25 @@
+package repositories;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import entities.Tweets;
+import entities.Usuario;
+
+
+@Repository
+public interface TweetsRepository extends CrudRepository<Tweets, Long> {
+	
+	public Tweets findById(int id);
+	
+	public List<Tweets> findByUsuario(Usuario usuario);
+	
+	public List<Tweets> findByTexto(String texto);
+	
+	public List<Tweets> findByFecha(Date fecha);
+	
+	
+}

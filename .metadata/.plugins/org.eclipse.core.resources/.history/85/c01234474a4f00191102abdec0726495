@@ -1,0 +1,13 @@
+package services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import repositories.UsuarioRepository;
+
+@RestController
+public class UsuarioService {
+
+	@Autowired
+	private UsuarioRepository usuarioRepositoryDAO;
+}

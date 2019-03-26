@@ -1,0 +1,70 @@
+package model;
+
+import java.util.Date;
+
+public class PublicacionM {
+
+	public PublicacionM() {
+
+	}
+
+	public PublicacionM(long idPublicacion, long idUsuario, Date fechaPublucacion, String contenidoPublicacion,
+			long idPublicacionRT) {
+		this.idPublicacion = idPublicacion;
+		this.idUsuario = idUsuario;
+		this.fechaPublucacion = fechaPublucacion;
+		this.contenidoPublicacion = contenidoPublicacion;
+		this.idPublicacionRT = idPublicacionRT;
+	}
+
+	private long idPublicacion;
+
+	private long idUsuario;
+
+	private Date fechaPublucacion;
+
+	private String contenidoPublicacion;
+
+	private long idPublicacionRT;
+
+	public long getIdPublicacion() {
+		return idPublicacion;
+	}
+
+	public void setIdPublicacion(long idPublicacion) {
+		this.idPublicacion = idPublicacion;
+	}
+
+	public long getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public Date getFechaPublucacion() {
+		return fechaPublucacion;
+	}
+
+	public void setFechaPublucacion(Date fechaPublucacion) {
+		this.fechaPublucacion = fechaPublucacion;
+	}
+
+	public String getContenidoPublicacion() {
+		return contenidoPublicacion;
+	}
+
+	public void setContenidoPublicacion(String contenidoPublicacion) {
+		this.contenidoPublicacion = contenidoPublicacion;
+	}
+
+	public long getIdPublicacionRT() {
+		return idPublicacionRT;
+	}
+
+	public void setIdPublicacionRT(long idPublicacionRT) {
+		this.idPublicacionRT = idPublicacionRT;
+	}
+
+}

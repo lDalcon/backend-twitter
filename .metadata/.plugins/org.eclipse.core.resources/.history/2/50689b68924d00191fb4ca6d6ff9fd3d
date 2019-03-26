@@ -1,0 +1,81 @@
+package servicios;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import entities.Usuario;
+import repositories.UsuarioRepository;
+
+@RestController
+public class UsuarioController {
+
+	@Autowired
+	private UsuarioRepository usuarioRepositoryDAO;
+
+	@RequestMapping(path = "/getAllUsers", method = RequestMethod.GET)
+	public Iterable<Usuario> getAllUsers() {
+
+		Iterable<Usuario> findAll = usuarioRepositoryDAO.findAll();
+		return findAll;
+
+	}
+
+	@RequestMapping(path = "/addUser", method = RequestMethod.POST)
+	public @ResponseBody String addNewUser(@RequestParam String firstName, @RequestParam String lastName,
+	@RequestParam String email, @RequestParam String password) throws ParseException {
+
+		Usuario nuevoUsuario = new Usuario();
+		nuevoUsuario.setFirstName(firstName);
+		nuevoUsuario.setLastName(lastName);
+		nuevoUsuario.setEmail(email);
+		nuevoUsuario.setPassword(password);
+
+		usuarioRepositoryDAO.save(nuevoUsuario);
+		return "Usuario Guardado";
+
+	}
+
+	@RequestMapping(path = "/deleteUser", method = RequestMethod.POST)
+	public @ResponseBody String deleteUser(@RequestParam String id) {
+
+		int idusuario = Integer.parseInt(id);
+
+		Usuario usuario = usuarioRepositoryDAO.findById(idusuario);
+		usuarioRepositoryDAO.delete(usuario);
+		return "Usuario Eliminado";
+
+	}
+
+	@RequestMapping(path = "/getUserById", method = RequestMethod.GET)
+	public Usuario getUserById(@RequestParam String id) {
+		int idusuario = Integer.parseInt(id);
+
+		return usuarioRepositoryDAO.findById(idusuario);
+	}
+
+	@RequestMapping(path = "/getUserByEmail", method = RequestMethod.GET)
+	public Usuario getUserByEmail(@RequestParam String email) {
+
+		return usuarioRepositoryDAO.findByEmail(email);
+
+	}
+
+	@RequestMapping(path = "/getUserByHandle", method = RequestMethod.GET)
+	public Usuario getUserByHandle(@RequestParam String handle) {
+
+		return usuarioRepositoryDAO.findByHandle(handle);
+
+	}
+
+}

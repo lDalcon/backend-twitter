@@ -1,0 +1,101 @@
+package servicios;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import entities.Tweets;
+import entities.Usuario;
+import repositories.TweetsRepository;
+import repositories.UsuarioRepository;
+
+@RestController
+public class TweetsController {
+	
+	@Autowired
+	private TweetsRepository tweetsRepositoryDAO;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepositoryDAO;
+	
+	@CrossOrigin
+	@RequestMapping(path="/getAllTweets", method=RequestMethod.GET)
+	public Iterable<Tweets> getAllTweets () {
+		
+		Iterable<Tweets> findAll = tweetsRepositoryDAO.findAll();
+		return findAll;
+	}
+	
+	//@CrossOrigin
+	@RequestMapping(path="/addTweet", method=RequestMethod.POST) 
+	public @ResponseBody String addTweet
+	(@RequestParam String id_usuario, @RequestParam String texto) {
+		
+		Date hoy = Calendar.getInstance().getTime();
+		int idusuario = Integer.parseInt(id_usuario);
+		
+		Usuario usuario = usuarioRepositoryDAO.findById(idusuario);
+		
+		Tweets tweet = new Tweets();
+		tweet.setFecha(hoy);
+		tweet.setUsuario(idusuario);
+		tweet.setTexto(texto);
+		
+		tweetsRepositoryDAO.save(tweet);
+		
+		return "Tweet Guardado";
+		
+	}
+	
+
+	
+	@RequestMapping(path="/deleteTweet", method=RequestMethod.POST) 
+	public @ResponseBody String deleteTweet
+	(@RequestParam String id) {
+		
+		int idusuario = Integer.parseInt(id);
+		
+		Tweets tweet = tweetsRepositoryDAO.findById(idusuario);
+		tweetsRepositoryDAO.delete(tweet);
+		return "Tweet Eliminado";
+		
+	}
+	
+	@RequestMapping (path="/getTweetsByUser", method=RequestMethod.GET)
+	public Iterable<Tweets> getTweetsByUser (@RequestParam String id) {
+		
+		int idusuario = Integer.parseInt(id);
+		
+		Usuario usuario = usuarioRepositoryDAO.findById(idusuario);
+		
+		return tweetsRepositoryDAO.findByUsuario(usuario);
+	}
+	
+	@RequestMapping (path="/getTweetsByFecha", method=RequestMethod.GET)
+	public Iterable<Tweets> getTweetsByFecha (@RequestParam String date) throws ParseException {
+		
+		Date fecha = new SimpleDateFormat("dd/MM/yyyy").parse(date);  
+
+		return tweetsRepositoryDAO.findByFecha(fecha);
+	
+	}
+	
+	@RequestMapping (path="/getTweetsByTexto", method=RequestMethod.GET)
+	public Iterable<Tweets> getTweetsByTexto (@RequestParam String texto) {
+
+		return tweetsRepositoryDAO.findByTexto(texto);
+	
+	}
+	
+}

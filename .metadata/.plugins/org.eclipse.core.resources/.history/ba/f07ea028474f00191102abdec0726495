@@ -1,0 +1,17 @@
+package repositories;
+
+import java.io.Serializable;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import entities.Chat;
+
+@Repository("Repositorio")
+public interface ChatRepository extends JpaRepository<Chat, Serializable> {
+
+	public abstract Chat findByIdChat(long id);
+
+	public abstract Chat findByIdUsuarioEnviaChat(long id);
+
+}

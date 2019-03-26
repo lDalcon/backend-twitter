@@ -1,0 +1,33 @@
+package entities;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.*;
+
+@Table(name = "Chat")
+@Entity
+public class Chat implements Serializable{
+
+	@Id
+	@GeneratedValue (strategy = GenerationType.AUTO)
+	@Column(name = "Id_Chat")
+	private long idChat;
+
+	@Column(name = "Fecha_Chat")
+	private Date fechaChat;
+
+	@Column(name = "Texto_Chat")
+	private String textoChat;
+
+	@Column(name = "Id_UsuarioEnviaChat")
+	private Usuario usuarioEnviaChat;
+
+	@Column(name = "Id_UsuarioRecibeChat")
+	private Usuario usuarioRecibeChat;
+
+	public Chat() {
+
+	}
+
+}

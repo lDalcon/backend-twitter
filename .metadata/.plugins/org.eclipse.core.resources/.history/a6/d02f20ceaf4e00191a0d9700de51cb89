@@ -1,0 +1,68 @@
+package model;
+
+import java.util.Date;
+
+import entities.Likes;
+
+public class LikesM {
+
+	public LikesM() {
+
+	}
+
+	public LikesM(Likes likes) {
+		this.idLike = ;
+		this.fechaLike = fechaLike;
+		this.idPublicacionLike = idPublicacionLike;
+		this.idUsuarioLike = idUsuarioLike;
+
+	}
+
+	public LikesM(long idLike, Date fechaLike, long idPublicacionLike, long idUsuarioLike) {
+		this.idLike = idLike;
+		this.fechaLike = fechaLike;
+		this.idPublicacionLike = idPublicacionLike;
+		this.idUsuarioLike = idUsuarioLike;
+	}
+
+	private long idLike;
+
+	private Date fechaLike;
+
+	private long idPublicacionLike;
+
+	private long idUsuarioLike;
+
+	public long getIdLike() {
+		return idLike;
+	}
+
+	public void setIdLike(long idLike) {
+		this.idLike = idLike;
+	}
+
+	public Date getFechaLike() {
+		return fechaLike;
+	}
+
+	public void setFechaLike(Date fechaLike) {
+		this.fechaLike = fechaLike;
+	}
+
+	public long getIdPublicacionLike() {
+		return idPublicacionLike;
+	}
+
+	public void setIdPublicacionLike(long idPublicacionLike) {
+		this.idPublicacionLike = idPublicacionLike;
+	}
+
+	public long getIdUsuarioLike() {
+		return idUsuarioLike;
+	}
+
+	public void setIdUsuarioLike(long idUsuarioLike) {
+		this.idUsuarioLike = idUsuarioLike;
+	}
+
+}

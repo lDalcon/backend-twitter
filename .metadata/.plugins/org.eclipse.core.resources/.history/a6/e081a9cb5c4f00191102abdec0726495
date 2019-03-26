@@ -1,0 +1,46 @@
+package services;
+
+import java.text.ParseException;
+import java.util.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import entities.Publicacion;
+import entities.Usuario;
+import repositories.PublicacionRepository;
+import repositories.UsuarioRepository;
+
+@RestController
+public class PublicacionService {
+
+	@Autowired
+	private PublicacionRepository publicacionRepositoryDAO;
+	
+	@Autowired 
+	private UsuarioRepository usuarioRepositoryDAO;
+
+	@RequestMapping(path = "getAllPublicaciones", method = RequestMethod.GET)
+	public Iterable<Publicacion> getAllPublicaciones() {
+
+		Iterable<Publicacion> findAll = publicacionRepositoryDAO.findAll();
+		return findAll;
+
+	}
+
+	@RequestMapping(path = "/addPublicacion", method = RequestMethod.POST)
+	public @ResponseBody String addPublicacion(@RequestParam String usuario, @RequestParam String contenidoPublicacion)
+			throws ParseException {
+		
+		long idUsuario = Long.valueOf(usuario);
+		Date hoy =  Calendar.getInstance().getTime();
+		Usuario user = usuarioRepositoryDAO.findByIdUsuario(idUsuario);
+		
+		return "Publicacion realizada";
+	}
+
+}
