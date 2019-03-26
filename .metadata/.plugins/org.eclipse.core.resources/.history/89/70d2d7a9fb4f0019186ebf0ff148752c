@@ -41,7 +41,7 @@ public class UsuarioService {
 		nuevoUsuario.setCelularUsuario(Long.valueOf(celularUsuario));
 
 		usuarioRepositoryDAO.save(nuevoUsuario);
-		return "";
+		return "Usuario Guardado";
 
 	}
 	
