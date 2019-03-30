@@ -51,5 +51,15 @@ public class PublicacionService {
 		
 		return "";
 	}
+	
+	@CrossOrigin
+	@RequestMapping(path = "/getPublicacionUsuario", method = RequestMethod.GET)
+	public Iterable<Publicacion> getPublicacionUsuario(@RequestParam String idUsuario){
+		
+		Usuario usr = usuarioRepositoryDAO.findByIdUsuario(Long.valueOf(idUsuario));
+		Iterable<Publicacion> findUser = publicacionRepositoryDAO.findByUsuario(usr);
+		return findUser;
+		
+	}
 
 }
