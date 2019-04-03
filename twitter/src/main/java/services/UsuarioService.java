@@ -52,5 +52,13 @@ public class UsuarioService {
 		Usuario findUser = usuarioRepositoryDAO.findByIdUsuario(Long.valueOf(id));
 		return findUser;
 	}
+	
+	@CrossOrigin
+	@RequestMapping(path = "/getUsuario", method = RequestMethod.GET)
+	public Usuario getUser(@RequestParam String id, @RequestParam String clave) {
+		
+		Usuario findUser = usuarioRepositoryDAO.findByIdUsuarioAndClaveUsuario(Long.valueOf(id), clave);
+		return findUser;
+	}
 
 }

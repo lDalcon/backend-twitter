@@ -9,4 +9,6 @@ import entities.Usuario;
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 	
 	public abstract Usuario findByIdUsuario (long idUsuario);
+	
+	public abstract Usuario findByIdUsuarioAndClaveUsuario (long idUsuario, String claveUsuario);
 }
